@@ -1,6 +1,6 @@
 export const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-export const STORE_PRODUCT_URL = "https://www.owndays.com/th/en";
+export const STORE_PRODUCT_URL = "https://www.owndays.com/jp/ja/products";
 
 export const NAV_LINKS = [
   { label: "ABOUT", href: "#top" },
