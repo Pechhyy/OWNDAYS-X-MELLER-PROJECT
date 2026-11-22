@@ -1,13 +1,13 @@
 import type { Product } from "@/types/product";
 import { ProductCardSelection } from "@/components/ProductCardSelection";
 
-type ProductGridProps = {
+interface ProductGridProps {
   items: Product[] | undefined;
   isLoading: boolean;
   isError: boolean;
   onRetry: () => void;
   onSelectProduct: (item: Product, skuIndex: number) => void;
-};
+}
 
 export const ProductGrid: React.FC<ProductGridProps> = (props) => {
   const { items, isLoading, isError, onRetry, onSelectProduct } = props;

@@ -11,12 +11,12 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
-type ProductModalProps = {
+interface ProductModalProps {
   item: Product;
   initialSkuIndex: number;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-};
+}
 
 export const ProductModal: React.FC<ProductModalProps> = (props) => {
   const { item, initialSkuIndex, open, onOpenChange } = props;
