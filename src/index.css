@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Favorit";
+  src: url("https://storage.owndays.com/meller/fonts/Favorit/Favorit-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Favorit";
+  src: url("https://storage.owndays.com/meller/fonts/Favorit/Favorit-Medium.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Favorit";
+  src: url("https://storage.owndays.com/meller/fonts/Favorit/Favorit-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GT America Trial Cm";
+  src: url("https://storage.owndays.com/meller/fonts/GTAmericaTrial/GTAmericaTrial-Md.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GT America Trial Cm";
+  src: url("https://storage.owndays.com/meller/fonts/GTAmericaTrial/GTAmericaTrial-CmBl.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GT America Trial Cm";
+  src: url("https://storage.owndays.com/meller/fonts/GTAmericaTrial/GTAmericaTrial-CmBd.woff2")
+    format("woff2");
+  font-weight: 900;
+  font-display: swap;
+}
+
+@theme {
+  --color-brand: #f26a2f;
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --font-sans: "Favorit", "Noto Sans JP", sans-serif;
+  --font-display: "GT America Trial Cm", "Noto Sans JP", sans-serif;
+  --breakpoint-lg: 1024px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-brand);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/*
+  Title band (Figma "PRODUCTS" / "HOW TO" / "STYLE THEM"): a black box that hugs the capital letters.
+  text-box trims the empty space above and below the caps, so the box height = cap height.
+  Browsers without text-box fall back to a line-height close to the cap height.
+*/
+.title-band {
+  display: block;
+  width: fit-content;
+  background: var(--color-ink);
+  padding-inline: 0.02em;
+  line-height: 1;
+  text-box: trim-both cap alphabetic;
+}
+@supports not (text-box: trim-both cap alphabetic) {
+  .title-band {
+    line-height: 0.7;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Modal open/close animation (see ui/sheet.tsx) */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pop-out {
+  to {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes slide-out {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.sheet-overlay[data-state="open"] {
+  animation: fade-in 200ms ease-out;
+}
+.sheet-overlay[data-state="closed"] {
+  animation: fade-out 150ms ease-in forwards;
+}
+.sheet-content[data-state="open"] {
+  animation: pop-in 220ms ease-out;
+}
+.sheet-content[data-state="closed"] {
+  animation: pop-out 160ms ease-in forwards;
+}
+
+@media (min-width: 1024px) {
+  .sheet-content[data-state="open"] {
+    animation-name: slide-in;
+  }
+  .sheet-content[data-state="closed"] {
+    animation-name: slide-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet-overlay,
+  .sheet-content {
+    animation: none !important;
+  }
+}
